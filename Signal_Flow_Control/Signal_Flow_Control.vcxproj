@@ -150,7 +150,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source.cpp" />
+    <ClInclude Include="mux21_b.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="mux21_b.cpp" />
+    <ClCompile Include="mux21_b_tb.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
