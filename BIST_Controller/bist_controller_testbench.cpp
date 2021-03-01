@@ -43,6 +43,7 @@ int sc_main(int argc, char* argv[]) {
 	oraEnable_out = 0;
 	testReport_out = 0;
 
+	//start the simulation
 	sc_start(0, SC_NS);
 	//check the values are all 0 at the start
 	std::cout << "starting test" << std::endl;
