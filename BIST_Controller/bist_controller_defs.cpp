@@ -32,5 +32,11 @@ void bist_controller::controlBist() {
 }
 
 void bist_controller::reportBist() {
-	testReport_out.write(oraStatus_in);	//subject to change depending on final output format
+	if (enable.read() == 0) {
+		testReport_out.write(0);
+	}
+	else {
+		testReport_out.write(oraStatus_in);	//subject to change depending on final output format
+	}
 }
+	
