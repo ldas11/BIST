@@ -151,6 +151,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="lfsr_32bit.cpp" />
+    <ClCompile Include="lfsr_32bit_testbench.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="lfsr_32bit.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
