@@ -17,15 +17,28 @@ void mult_acc::process() {
         }
 
         if (finish_acc.read()) {
-            o_data.write(accumulation);
+            acc_reg.write(accumulation);
+            o_data_reg = float_to_sc_uint(accumulation);
+            o_data.write(o_data_reg);
             //accumulation = 0;
         }
 
     }
     else {
         accumulation = 0;
+        o_data_reg = 0;
         a_data_local = 0;
         b_data_local = 0;
-        o_data.write(accumulation);
+        acc_reg.write(accumulation);
+        o_data.write(o_data_reg);
     }
+}
+
+sc_bv<32> mult_acc::float_to_sc_uint(float value) {
+    sc_dt::scfx_ieee_float id(value);
+    bool sgn = id.negative();
+    sc_uint<8> exp = id.exponent();
+    sc_uint<23> mnts = id.mantissa();
+    sc_uint<32> converted_value = (sgn, exp, mnts);
+    return converted_value;
 }
