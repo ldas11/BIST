@@ -50,7 +50,7 @@ int sc_main(int argc, char* argv[]) {
 	reset = 0;
 	a_valid = 1;
 	b_valid = 1;
-	a_data = 3.5;
+	a_data = -3.0;
 	b_data = 1;
 	sc_start(0.5, SC_NS);
 	a_valid = 0;

@@ -37,7 +37,12 @@ void mult_acc::process() {
 sc_bv<32> mult_acc::float_to_sc_uint(float value) {
     sc_dt::scfx_ieee_float id(value);
     bool sgn = id.negative();
-    sc_uint<8> exp = id.exponent();
+    sc_uint<8> exp_temp= id.exponent(); //exponent() delivers the esxponent bits in reverse order
+    sc_uint<8> exp = 0; 
+    for (int i = 7; i >= 0; i--) {      //this loop places the exponent bits in the correct order 
+        exp |= exp_temp << i;
+        exp_temp >>= 1;
+    }
     sc_uint<23> mnts = id.mantissa();
     sc_uint<32> converted_value = (sgn, exp, mnts);
     return converted_value;
