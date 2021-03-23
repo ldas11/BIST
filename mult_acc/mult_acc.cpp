@@ -13,13 +13,13 @@ void mult_acc::process() {
             a_fifo.nb_read(a_data_local);
             b_fifo.nb_read(b_data_local);
             accumulation += a_data_local * b_data_local;
+            o_data_reg = float_to_sc_uint(accumulation);
             std::cout << a_data_local << "*" << b_data_local << " = " << a_data_local * b_data_local << " will be added" << std::endl;
         }
 
         if (finish_acc.read()) {
             acc_reg.write(accumulation);
-            o_data_reg = float_to_sc_uint(accumulation);
-            o_data.write(o_data_reg);
+            o_data.write(o_data_reg);       //to use as input for the ORAs
             //accumulation = 0;
         }
 
@@ -34,16 +34,19 @@ void mult_acc::process() {
     }
 }
 
+//convert floats to uint, can then be stored as bit vector
 sc_bv<32> mult_acc::float_to_sc_uint(float value) {
-    sc_dt::scfx_ieee_float id(value);
-    bool sgn = id.negative();
-    sc_uint<8> exp_temp= id.exponent(); //exponent() delivers the esxponent bits in reverse order
-    sc_uint<8> exp = 0; 
-    for (int i = 7; i >= 0; i--) {      //this loop places the exponent bits in the correct order 
-        exp |= exp_temp << i;
+    sc_dt::scfx_ieee_float float_number(value);
+    bool sgn = float_number.negative();
+    sc_int<8> exp= float_number.exponent();   //exponent() delivers the exponent without bias
+    exp += 127;                     //add bias to meet IEEE 754 standard
+    /**
+    for (int i = 7; i >= 0; i--) {   //this reverses the bit order 
+        exp |= (exp_temp & 1) << i;  //unnecessary! bits are in the correct order
         exp_temp >>= 1;
     }
-    sc_uint<23> mnts = id.mantissa();
-    sc_uint<32> converted_value = (sgn, exp, mnts);
+    **/
+    sc_uint<23> mnts = float_number.mantissa(); //delivers the correct mantissa
+    sc_uint<32> converted_value = (sgn, exp, mnts); //concatenate
     return converted_value;
 }
