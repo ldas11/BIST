@@ -18,6 +18,11 @@ void lfsr_32bit::stateMachine() {
 			lfsr_32bit::shiftBits(); 
 			state = lfsrEnable_in.read() ? run : idle; 
 			break;
+		default:
+			testPattern.write(0);
+			std::cout << "idle" << std::endl;
+			state = lfsrEnable_in.read() ? init : idle;
+			break;
 	}
 }
 
