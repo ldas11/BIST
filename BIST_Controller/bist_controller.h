@@ -15,10 +15,10 @@ SC_MODULE(bist_controller) {
 	void reportBist();
 
 	SC_CTOR(bist_controller) {
-		SC_METHOD(controlBist);					//method controlBist is in charge of enabling/disabling the other modules
+		SC_METHOD(controlBist);		//method controlBist is in charge of enabling/disabling the other modules
 		sensitive << clk.pos();		//respond to changes in enable and on positive clock edges
 
-		SC_METHOD(reportBist);					//method reportBist transmits the result delivered by the ORA
+		SC_METHOD(reportBist);	//method reportBist transmits the result delivered by the ORA
 		sensitive << clk.pos();	//respond to changes in oraStatus_in and on positive clock edges
 	}
 };
