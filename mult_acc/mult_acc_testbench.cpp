@@ -55,16 +55,20 @@ int sc_main(int argc, char* argv[]) {
 	reset = 0;
 	a_valid = 1;
 	b_valid = 1;
-	a_data = 2.32830643654e-09;
-	b_data = 1;
+	a_data = 1.0;
+	b_data = 1.17549435082e-38;
 	sc_start(0.5, SC_NS);
 	a_valid = 0;
 	b_valid = 0;
+	sc_start(0.5, SC_NS);
+
 	sc_start(10, SC_NS);
 	a_valid = 1;
 	b_valid = 1;
-	a_data = -3.5;
+	a_data = 3.85185988877e-34;
 	b_data = 1;
+	sc_start(0.5, SC_NS);
+
 	sc_start(0.5, SC_NS);
 	a_valid = 0;
 	b_valid = 0;
