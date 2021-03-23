@@ -17,7 +17,7 @@ SC_MODULE(mult_acc) {
 	sc_fifo<float> b_fifo;
 
 	void process();
-	sc_bv<32> float_to_sc_uint(float value);
+	sc_bv<32> float_to_bv(float value);
 
 	SC_CTOR(mult_acc) {
 		SC_METHOD(process);

@@ -13,7 +13,7 @@ void mult_acc::process() {
             a_fifo.nb_read(a_data_local);
             b_fifo.nb_read(b_data_local);
             accumulation += a_data_local * b_data_local;
-            o_data_reg = float_to_sc_uint(accumulation);
+            o_data_reg = float_to_bv(accumulation);
             std::cout << a_data_local << "*" << b_data_local << " = " << a_data_local * b_data_local << " will be added" << std::endl;
         }
 
@@ -35,7 +35,7 @@ void mult_acc::process() {
 }
 
 //convert floats to uint, can then be stored as bit vector
-sc_bv<32> mult_acc::float_to_sc_uint(float value) {
+sc_bv<32> mult_acc::float_to_bv(float value) {
     sc_dt::scfx_ieee_float float_number(value);
     bool sgn = float_number.negative();
     sc_int<8> exp= float_number.exponent();   //exponent() delivers the exponent without bias
