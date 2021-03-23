@@ -21,9 +21,15 @@
     <ClCompile Include="lfsr_32bit_testbench.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="shift_reg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lfsr_32bit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="shift_reg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
