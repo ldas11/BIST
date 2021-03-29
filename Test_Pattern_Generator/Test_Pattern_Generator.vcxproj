@@ -151,8 +151,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="lfsr_32bit.cpp" />
-    <ClCompile Include="lfsr_32bit_testbench.cpp" />
     <ClCompile Include="shift_reg.cpp" />
+    <ClCompile Include="shift_reg_tb.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lfsr_32bit.h" />

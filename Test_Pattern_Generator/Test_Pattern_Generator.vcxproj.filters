@@ -18,10 +18,10 @@
     <ClCompile Include="lfsr_32bit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="lfsr_32bit_testbench.cpp">
+    <ClCompile Include="shift_reg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="shift_reg.cpp">
+    <ClCompile Include="shift_reg_tb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
