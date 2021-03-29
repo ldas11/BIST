@@ -18,9 +18,18 @@
     <ClCompile Include="misr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="comparator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="comparator_tb.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="misr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="comparator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -150,9 +150,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="comparator.cpp" />
+    <ClCompile Include="comparator_tb.cpp" />
     <ClCompile Include="misr.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="comparator.h" />
     <ClInclude Include="misr.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
