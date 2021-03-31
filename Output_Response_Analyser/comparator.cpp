@@ -9,6 +9,6 @@ void comparator::compare() {
 		comp_res[i] = ~(mac_data_local[i] ^ ref_data_local[i]);
 	}
 	**/
-	comp_res = (mac_data_local ^ ref_data_local);
+	comp_res = ~(mac_data_local ^ ref_data_local);
 	result.write(comp_res);
 }
