@@ -7,7 +7,7 @@ int sc_main(int argc, char* argv[]) {
 	//signals
 	sc_clock clk("clk", 1, SC_NS);
 	sc_signal<bool> lfsrEnable_in, run_pause, data_enable;	//clock input, enable input, run/pause input
-	sc_signal<sc_bv<32>> testPattern;
+	sc_signal<sc_bv<32>> testPattern_a, testPattern_b;
 
 	//instantiation
 	shift_reg tpg("TPG");
@@ -16,7 +16,8 @@ int sc_main(int argc, char* argv[]) {
 	tpg.clk(clk);
 	tpg.lfsrEnable_in(lfsrEnable_in);
 	tpg.run_pause(run_pause);
-	tpg.testPattern(testPattern);
+	tpg.testPattern_a(testPattern_a);
+	tpg.testPattern_b(testPattern_b);
 	tpg.data_enable(data_enable);
 
 	//create vcd file to visualize the simulation
@@ -25,13 +26,15 @@ int sc_main(int argc, char* argv[]) {
 	sc_trace(wf, clk, "clock");
 	sc_trace(wf, lfsrEnable_in, "enable");
 	sc_trace(wf, run_pause, "run_pause");
-	sc_trace(wf, testPattern, "testPattern");
+	sc_trace(wf, testPattern_a, "testPattern_a");
+	sc_trace(wf, testPattern_b, "testPattern_b");
 	sc_trace(wf, data_enable, "data_enable");
 
 	//init
 	lfsrEnable_in = 0;
 	run_pause = 0;
-	testPattern = 0;
+	testPattern_a = 0;
+	testPattern_b = 0;
 	data_enable = 0;
 
 	//start sim
@@ -42,7 +45,7 @@ int sc_main(int argc, char* argv[]) {
 	sc_start(10, SC_NS);
 	run_pause = 1;
 	sc_start(25, SC_NS);
-	run_pause = 0;
+	//run_pause = 0;
 	sc_start(5, SC_NS);
 	run_pause = 1;
 	sc_start(100, SC_NS);
