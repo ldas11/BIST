@@ -11,7 +11,8 @@ int sc_main(int argc, char* argv[]) {
 	sc_signal<sc_bv<2>> oraStatus_in;
 	sc_signal<bool> lfsrEnable_out, sfcEnable_out, oraEnable_out; //enable LFSR(pattern generator), enable signal flow control, enable output response analyser
 	sc_signal<sc_bv<2>> testReport_out;
-
+	sc_signal<bool>  oraFinished, data_en_in, a_valid_out, b_valid_out, finish_acc_out,
+		run_pause_out;
 	//instantiate a controller for the testbench
 	bist_controller controller("Controller");
 
@@ -23,6 +24,12 @@ int sc_main(int argc, char* argv[]) {
 	controller.sfcEnable_out(sfcEnable_out);
 	controller.oraEnable_out(oraEnable_out);
 	controller.testReport_out(testReport_out);
+	controller.oraFinished(oraFinished);
+	controller.data_en_in(data_en_in);
+	controller.a_valid_out(a_valid_out);
+	controller.b_valid_out(b_valid_out);
+	controller.finish_acc_out(finish_acc_out);
+	controller.run_pause_out(run_pause_out);
 	
 	//create vcd file to visualize the simulation
 	sc_trace_file* wf = sc_create_vcd_trace_file("bist_controller");
@@ -34,6 +41,12 @@ int sc_main(int argc, char* argv[]) {
 	sc_trace(wf, oraEnable_out, "oraEnable_out");
 	sc_trace(wf, oraStatus_in, "oraStatus_in");
 	sc_trace(wf, testReport_out, "testReport_out");
+	sc_trace(wf, oraFinished, "oraFinished");
+	sc_trace(wf, data_en_in, "data_en_in");
+	sc_trace(wf, a_valid_out, "a_valid_out");
+	sc_trace(wf, b_valid_out, "b_valid_out");
+	sc_trace(wf, finish_acc_out, "finish_acc_out");
+	sc_trace(wf, run_pause_out, "run_pause_out");
 
 	//initialize signals
 	enable = 0;
@@ -42,6 +55,12 @@ int sc_main(int argc, char* argv[]) {
 	sfcEnable_out = 0;
 	oraEnable_out = 0;
 	testReport_out = 0;
+	oraFinished = 0;
+	data_en_in = 0;
+	a_valid_out = 0;
+	b_valid_out = 0;
+	finish_acc_out = 0;
+	run_pause_out = 0;
 
 	//start the simulation
 	sc_start(0, SC_NS);
@@ -55,7 +74,8 @@ int sc_main(int argc, char* argv[]) {
 	std::cout << "@" << sc_time_stamp() << " testReport_out -> " << testReport_out << std::endl;
 	sc_start(10, SC_NS);
 	//checking if the sub module enables are triggeredafter the main enable is activated
-	enable = 1;											 
+	enable = 1;		
+	data_en_in = 1;
 	std::cout << "enabling the controller" << std::endl;
 	std::cout << "@" << sc_time_stamp() << " enable -> " << enable << std::endl;
 	std::cout << "@" << sc_time_stamp() << " lfsrEnable_out -> " << lfsrEnable_out << std::endl;
@@ -63,9 +83,10 @@ int sc_main(int argc, char* argv[]) {
 	std::cout << "@" << sc_time_stamp() << " oraEnable_out -> " << oraEnable_out << std::endl;
 	std::cout << "@" << sc_time_stamp() << " oraStatus_in -> " << oraStatus_in << std::endl;
 	std::cout << "@" << sc_time_stamp() << " testReport_out -> " << testReport_out << std::endl;
-	sc_start(10, SC_NS);
+	sc_start(100, SC_NS);
 	//checking the test report output works as intended (testReport_out=oraStatus_in)
 	oraStatus_in = 3;
+	oraFinished = 1;
 	std::cout << "@" << sc_time_stamp() << " enable -> " << enable << std::endl;
 	std::cout << "@" << sc_time_stamp() << " lfsrEnable_out -> " << lfsrEnable_out << std::endl;
 	std::cout << "@" << sc_time_stamp() << " sfcEnable_out -> " << sfcEnable_out << std::endl;

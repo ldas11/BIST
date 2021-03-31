@@ -1,7 +1,7 @@
 #include "bist_controller.h"
 #include<iostream>
 
-void bist_controller::controlBist() {
+void bist_controller::enableBist() {
 	//if the enable input is active, then the other components will be enabled too
 	if (enable.read() == 1) {
 		std::cout << "enabling pattern generator" << std::endl;
@@ -31,12 +31,43 @@ void bist_controller::controlBist() {
 	}
 }
 
+void bist_controller::controlBist() {
+	if (enable.read() == 0) {
+		
+		a_valid_out.write(0);
+		b_valid_out.write(0);
+		run_pause_out.write(0);
+		finish_acc_out.write(0);
+		count = 0;
+	}
+	else if (enable.read() == 1 && oraFinished.read() == 0) {
+		
+		run_pause_out.write(1);
+		
+		if (data_en_in.read() == 1) {
+			a_valid_out.write(1);
+			b_valid_out.write(1);
+			count += 1;
+		}
+		else {
+			a_valid_out.write(0);
+			b_valid_out.write(0);
+		}
+	}
+
+	if (count >= 58) {
+		run_pause_out.write(0);
+		count = 0;
+	}
+	
+}
+
 void bist_controller::reportBist() {
 	if (enable.read() == 0) {
 		testReport_out.write(0);
 	}
-	else {
-		testReport_out.write(oraStatus_in);	//subject to change depending on final output format
+	else if (enable.read() == 1 && oraFinished.read() == 1) {
+		testReport_out.write(oraStatus_in.read());	//subject to change depending on final output format
 	}
 }
 	
