@@ -26,10 +26,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="misr.h">
+    <ClInclude Include="comparator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="comparator.h">
+    <ClInclude Include="misr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

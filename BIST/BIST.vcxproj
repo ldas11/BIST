@@ -152,12 +152,16 @@
   <ItemGroup>
     <ClCompile Include="..\BIST_Controller\bist_controller_defs.cpp" />
     <ClCompile Include="..\mult_acc\mult_acc.cpp" />
+    <ClCompile Include="..\Output_Response_Analyser\comparator.cpp" />
+    <ClCompile Include="..\Output_Response_Analyser\misr.cpp" />
     <ClCompile Include="..\Signal_Flow_Control\mux21_b.cpp" />
     <ClCompile Include="..\Test_Pattern_Generator\lfsr_32bit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\BIST_Controller\bist_controller.h" />
     <ClInclude Include="..\mult_acc\mult_acc.h" />
+    <ClInclude Include="..\Output_Response_Analyser\comparator.h" />
+    <ClInclude Include="..\Output_Response_Analyser\misr.h" />
     <ClInclude Include="..\Signal_Flow_Control\mux21_b.h" />
     <ClInclude Include="..\Test_Pattern_Generator\lfsr_32bit.h" />
   </ItemGroup>

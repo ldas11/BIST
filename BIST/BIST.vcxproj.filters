@@ -27,6 +27,12 @@
     <ClCompile Include="..\Test_Pattern_Generator\lfsr_32bit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Output_Response_Analyser\comparator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Output_Response_Analyser\misr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\mult_acc\mult_acc.h">
@@ -39,6 +45,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Test_Pattern_Generator\lfsr_32bit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Output_Response_Analyser\comparator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Output_Response_Analyser\misr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
