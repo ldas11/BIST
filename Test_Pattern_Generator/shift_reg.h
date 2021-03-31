@@ -8,6 +8,7 @@ SC_MODULE(shift_reg) {
 	// ports
 	sc_in<bool> clk, lfsrEnable_in, run_pause;	//clock input, enable input, run/pause input
 	sc_out<sc_bv<patternWidth>> testPattern;	//pattern output
+	sc_out<bool> data_enable;
 	sc_bv<patternWidth> currentPattern;
 	sc_bv<patternWidth> newPattern;
 	

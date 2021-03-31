@@ -6,7 +6,7 @@
 int sc_main(int argc, char* argv[]) {
 	//signals
 	sc_clock clk("clk", 1, SC_NS);
-	sc_signal<bool> lfsrEnable_in, run_pause;	//clock input, enable input, run/pause input
+	sc_signal<bool> lfsrEnable_in, run_pause, data_enable;	//clock input, enable input, run/pause input
 	sc_signal<sc_bv<32>> testPattern;
 
 	//instantiation
@@ -17,6 +17,7 @@ int sc_main(int argc, char* argv[]) {
 	tpg.lfsrEnable_in(lfsrEnable_in);
 	tpg.run_pause(run_pause);
 	tpg.testPattern(testPattern);
+	tpg.data_enable(data_enable);
 
 	//create vcd file to visualize the simulation
 	sc_trace_file* wf = sc_create_vcd_trace_file("shift_reg");
@@ -25,11 +26,13 @@ int sc_main(int argc, char* argv[]) {
 	sc_trace(wf, lfsrEnable_in, "enable");
 	sc_trace(wf, run_pause, "run_pause");
 	sc_trace(wf, testPattern, "testPattern");
+	sc_trace(wf, data_enable, "data_enable");
 
 	//init
 	lfsrEnable_in = 0;
 	run_pause = 0;
 	testPattern = 0;
+	data_enable = 0;
 
 	//start sim
 	sc_start(0, SC_NS);

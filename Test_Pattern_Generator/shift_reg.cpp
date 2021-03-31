@@ -11,6 +11,8 @@ void shift_reg::stateMachine() {
 			**/
 		case idle:
 			testPattern.write(0);
+			data_enable.write(0);
+
 			std::cout << "idle" << std::endl;
 			previous_state = idle;
 			current_state = idle;
@@ -32,6 +34,8 @@ void shift_reg::stateMachine() {
 			**/
 		case paused:
 			testPattern.write(currentPattern);
+			data_enable.write(0);
+
 			if (previous_state != paused) {
 				next_state = previous_state;
 				previous_state = paused;
@@ -61,6 +65,7 @@ void shift_reg::stateMachine() {
 			
 
 			testPattern.write(currentPattern);
+			data_enable.write(1);
 			//increase the pattern count by 1
 			count += 1;
 			std::cout << "test1, test pattern: " << testPattern << std::endl;
@@ -88,6 +93,7 @@ void shift_reg::stateMachine() {
 			}
 			
 			testPattern.write(currentPattern);
+			data_enable.write(1);
 			//increase the pattern count by 1
 			count += 1;
 			std::cout << "test2, test pattern: " << testPattern << std::endl;
@@ -121,6 +127,7 @@ void shift_reg::stateMachine() {
 			
 
 			testPattern.write(currentPattern);
+			data_enable.write(1);
 			//increase the pattern count by 1
 			count += 1;
 			std::cout << "test3, test pattern: " << testPattern << std::endl;
@@ -152,6 +159,7 @@ void shift_reg::stateMachine() {
 			}
 			
 			testPattern.write(currentPattern);
+			data_enable.write(1);
 			//increase the pattern count by 1
 			count += 1;
 			std::cout << "test4, test pattern: " << testPattern << std::endl;
@@ -166,6 +174,7 @@ void shift_reg::stateMachine() {
 			//'dafault' is the same as 'idle'
 		default:
 			testPattern.write(0);
+			data_enable.write(0);
 			std::cout << "idle/default" << std::endl;
 			previous_state = idle;
 			current_state = idle;
@@ -183,6 +192,7 @@ void shift_reg::stateMachine() {
 	}
 	else {
 		testPattern.write(0);
+		data_enable.write(0);
 		std::cout << "disabled" << std::endl;
 		previous_state = idle;
 		current_state = idle;
