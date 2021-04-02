@@ -18,12 +18,18 @@
     <ClInclude Include="mux21_b.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="mux21_bv_32.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mux21_b_tb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="mux21_b.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mux21_bv_32.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

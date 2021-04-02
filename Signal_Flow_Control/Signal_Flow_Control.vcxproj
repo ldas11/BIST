@@ -151,9 +151,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="mux21_b.h" />
+    <ClInclude Include="mux21_bv_32.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mux21_b.cpp" />
+    <ClCompile Include="mux21_bv_32.cpp" />
     <ClCompile Include="mux21_b_tb.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
