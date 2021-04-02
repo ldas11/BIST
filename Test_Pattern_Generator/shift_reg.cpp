@@ -13,6 +13,7 @@ void shift_reg::stateMachine() {
 			testPattern_a.write(0);
 			testPattern_b.write(0);
 			data_enable.write(0);
+			oneFloat = 0;
 
 			std::cout << "idle" << std::endl;
 			previous_state = idle;
@@ -35,7 +36,13 @@ void shift_reg::stateMachine() {
 			**/
 		case paused:
 			testPattern_a.write(currentPattern);
-			testPattern_b.write(currentPattern);
+			if (previous_state == test1) {
+				testPattern_b.write(test1_Pattern);
+			}
+			else {
+				testPattern_b.write(oneFloat);
+			}
+			
 			data_enable.write(0);
 
 			if (previous_state != paused) {
@@ -101,13 +108,18 @@ void shift_reg::stateMachine() {
 					currentPattern |= 0b01 << 30;
 					count = 0;
 					std::cout << "count in loop: " << count << std::endl;
+					
+					oneFloat = 0;
+					for (int i = 29; i > 22; i--) {
+						oneFloat |= 0b1 << i;
+					}
 				}
 				current_state = test2;
 				next_state = test3;
 			}
 			
 			testPattern_a.write(currentPattern);
-			testPattern_b.write(currentPattern);
+			testPattern_b.write(oneFloat);
 			data_enable.write(1);
 			//increase the pattern count by 1
 			count += 1;
@@ -134,6 +146,11 @@ void shift_reg::stateMachine() {
 					currentPattern |= 0b01 << 22;
 					count = 0;
 					std::cout << "count in loop: " << count << std::endl;
+
+					oneFloat = 0;
+					for (int i = 29; i > 22; i--) {
+						oneFloat |= 0b1 << i;
+					}
 					
 				}
 				current_state = test3;
@@ -142,7 +159,7 @@ void shift_reg::stateMachine() {
 			
 
 			testPattern_a.write(currentPattern);
-			testPattern_b.write(currentPattern);
+			testPattern_b.write(oneFloat);
 			data_enable.write(1);
 			//increase the pattern count by 1
 			count += 1;
@@ -168,14 +185,19 @@ void shift_reg::stateMachine() {
 					currentPattern = 0;
 					currentPattern |= 0b01;
 					count = 0;
-					std::cout << "count in loop: " << count << std::endl;					
+					std::cout << "count in loop: " << count << std::endl;
+					
+					oneFloat = 0;
+					for (int i = 29; i > 22; i--) {
+						oneFloat |= 0b1 << i;
+					}
 				}
 				current_state = test4;
 				next_state = idle;
 			}
 			
 			testPattern_a.write(currentPattern);
-			testPattern_b.write(currentPattern);
+			testPattern_b.write(oneFloat);
 			data_enable.write(1);
 			//increase the pattern count by 1
 			count += 1;
@@ -193,6 +215,8 @@ void shift_reg::stateMachine() {
 			testPattern_a.write(0);
 			testPattern_b.write(0);
 			data_enable.write(0);
+			oneFloat = 0;
+
 			std::cout << "idle/default" << std::endl;
 			previous_state = idle;
 			current_state = idle;
@@ -212,6 +236,8 @@ void shift_reg::stateMachine() {
 		testPattern_a.write(0);
 		testPattern_b.write(0);
 		data_enable.write(0);
+		oneFloat = 0;
+
 		std::cout << "disabled" << std::endl;
 		previous_state = idle;
 		current_state = idle;

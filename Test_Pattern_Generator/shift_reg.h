@@ -22,6 +22,7 @@ SC_MODULE(shift_reg) {
 	void stateMachine();
 
 	int count;
+	sc_bv<32> oneFloat;
 
 	void shiftBits(bool left_right);
 
