@@ -1,5 +1,5 @@
-#ifndef MUX21b_H
-#define MUX21b_H
+#ifndef MUX21_B_H
+#define MUX21_B_H
 
 #include"systemc.h"
 
@@ -17,4 +17,4 @@ SC_MODULE(mux21_b) {
 	}
 };
 
-#endif // !MUX21_H
+#endif // !MUX21_B_H
