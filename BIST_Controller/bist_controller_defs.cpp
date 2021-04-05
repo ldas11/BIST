@@ -55,7 +55,7 @@ void bist_controller::controlBist() {
 		}
 	}
 
-	if (count >= 58) {
+	if (count >= 58 || oraFinished.read() == 1) {
 		run_pause_out.write(0);
 		count = 0;
 	}
