@@ -33,6 +33,12 @@
     <ClCompile Include="..\Output_Response_Analyser\misr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Output_Response_Analyser\ora_control_comp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Output_Response_Analyser\compactor_and.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\mult_acc\mult_acc.h">
@@ -51,6 +57,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Output_Response_Analyser\misr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Output_Response_Analyser\ora_control_comp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Output_Response_Analyser\compactor_and.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
