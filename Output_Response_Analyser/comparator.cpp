@@ -1,14 +1,25 @@
 #include"comparator.h"
 
 void comparator::compare() {
-	mac_data_local = mac_data.read();
-	ref_data_local = ref_data.read();
-	comp_res = 0;
-	/**
-	for (int i = 0; i < 32; i++) {
-		comp_res[i] = ~(mac_data_local[i] ^ ref_data_local[i]);
+	if (enable.read() == 1) {
+
+
+		mac_data_local = mac_data.read();
+		ref_data_local = ref_data.read();
+		ref_data_b_local = ref_data_b.read();
+
+		comp_res_rest = 0;
+		comp_res_sign = 0;
+
+		for (int i = 0; i < 31; i++) {
+			comp_res_rest[i] = ~(mac_data_local[i] ^ ref_data_local[i]);
+		}
+
+		ref_data_local[31] = ref_data_local[31] ^ ref_data_b_local[0];
+		comp_res_sign[0] = ~(mac_data_local[31] ^ ref_data_local[31]);
+
+		//comp_res = ~(mac_data_local ^ ref_data_local);
+		result_rest.write(comp_res_rest);
+		result_sign.write(comp_res_sign);
 	}
-	**/
-	comp_res = ~(mac_data_local ^ ref_data_local);
-	result.write(comp_res);
 }

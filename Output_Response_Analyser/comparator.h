@@ -5,12 +5,18 @@
 
 SC_MODULE(comparator) {
 	sc_in<bool> clk, enable;
+	//sc_in<sc_bv<2>> currentTest_in;
 	sc_in<sc_bv<32>> mac_data, ref_data;
-	sc_out<sc_bv<32>> result;
+	sc_in<sc_bv<1>> ref_data_b;
+	sc_out <sc_bv<1>> result_sign;
+	sc_out<sc_bv<31>> result_rest;
 
 	sc_bv<32> mac_data_local;
 	sc_bv<32> ref_data_local;
-	sc_bv<32> comp_res;
+	sc_bv<1> ref_data_b_local;
+
+	sc_bv<1> comp_res_sign;
+	sc_bv<32> comp_res_rest;
 	
 
 	void compare();
