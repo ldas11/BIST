@@ -21,13 +21,13 @@
     <ClCompile Include="comparator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="compactor_and.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ora_control_comp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="comparator_tb.cpp">
+    <ClCompile Include="compactor_and.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="compactor_tb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

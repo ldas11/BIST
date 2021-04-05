@@ -4,7 +4,7 @@
 #include<iostream>
 
 int sc_main(int argc, char* argv[]) {
-	sc_signal<sc_bv<32>> toCompact;
+	sc_signal<sc_bv<31>> toCompact;
 	sc_signal<bool> compacted;
 	sc_signal<int> random_pos;
 
@@ -27,16 +27,16 @@ int sc_main(int argc, char* argv[]) {
 	compacted = 0;
 	random_pos = 0;
 	int random = 0;
-	unsigned int value = 0b11111111111111111111111111111111;
+	unsigned int value = 0b1111111111111111111111111111111;
 
 	sc_start(0, SC_NS);
 	std::cout << "starting simulation" << std::endl;
 
 	//sc_start(1, SC_NS);
 	for (int i = 0; i < 10; i++) {
-		toCompact = 0b11111111111111111111111111111111;
+		toCompact = 0b1111111111111111111111111111111;
 		sc_start(1, SC_NS);
-		random = rand() % 32;
+		random = rand() % 31;
 		random_pos = random;
 		value &= ~(0b1 << random);
 		toCompact = value;
