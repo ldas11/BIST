@@ -150,11 +150,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="compactor_and.cpp" />
+    <ClCompile Include="compactor_tb.cpp" />
     <ClCompile Include="comparator.cpp" />
-    <ClCompile Include="comparator_tb.cpp" />
     <ClCompile Include="misr.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="compactor_and.h" />
     <ClInclude Include="comparator.h" />
     <ClInclude Include="misr.h" />
   </ItemGroup>
