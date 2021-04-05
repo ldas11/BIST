@@ -12,7 +12,7 @@ void compactor_nand::compact() {
 	if (compacted_temp[0] == 1) {
 		compacted.write(1);
 	}
-	else if(compacted_temp[0] ==0)
+	else if(compacted_temp[0] == 0)
 	{
 		compacted.write(0);
 	}
