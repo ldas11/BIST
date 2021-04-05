@@ -21,10 +21,13 @@
     <ClCompile Include="comparator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="compactor_tb.cpp">
+    <ClCompile Include="compactor_and.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="compactor_and.cpp">
+    <ClCompile Include="ora_control_comp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="comparator_tb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="compactor_and.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ora_control_comp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
