@@ -4,10 +4,10 @@
 #include"systemc.h"
 
 SC_MODULE(compactor_nand) {
-	sc_in<sc_bv<32>> toCompact;
+	sc_in<sc_bv<31>> toCompact;
 	sc_out<bool> compacted;
 	
-	sc_bv<32> toCompact_temp;
+	sc_bv<31> toCompact_temp;
 	sc_bv<1> compacted_temp;
 
 	void compact();
