@@ -10,6 +10,7 @@ SC_MODULE(shift_reg) {
 	sc_out<sc_bv<patternWidth>> testPattern_a;	//pattern output
 	sc_out<sc_bv<patternWidth>> testPattern_b;	//pattern output
 	sc_out<bool> data_enable;
+	sc_out<sc_bv<2>> testNumber;
 	
 	sc_bv<patternWidth> currentPattern;
 	sc_bv<patternWidth> newPattern;

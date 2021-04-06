@@ -13,6 +13,7 @@ void shift_reg::stateMachine() {
 			testPattern_a.write(0);
 			testPattern_b.write(0);
 			data_enable.write(0);
+			testNumber.write(0);
 			oneFloat = 0;
 
 			std::cout << "idle" << std::endl;
@@ -85,6 +86,7 @@ void shift_reg::stateMachine() {
 			
 			testPattern_a.write(currentPattern);
 			testPattern_b.write(test1_Pattern);
+			testNumber.write(0b01);
 			data_enable.write(1);
 			//increase the pattern count by 1
 			count += 1;
@@ -120,6 +122,7 @@ void shift_reg::stateMachine() {
 			
 			testPattern_a.write(currentPattern);
 			testPattern_b.write(oneFloat);
+			testNumber.write(0b10);
 			data_enable.write(1);
 			//increase the pattern count by 1
 			count += 1;
@@ -154,12 +157,13 @@ void shift_reg::stateMachine() {
 					
 				}
 				current_state = test3;
-				next_state = test4;
+				next_state = idle;
 			}
 			
 
 			testPattern_a.write(currentPattern);
 			testPattern_b.write(oneFloat);
+			testNumber.write(0b11);
 			data_enable.write(1);
 			//increase the pattern count by 1
 			count += 1;
@@ -179,6 +183,7 @@ void shift_reg::stateMachine() {
 			when run=0 --> go to 'paused'
 			only shift bits to the left while count<23
 			**/
+		/**
 		case test4:
 			if (previous_state != test4) {
 				if (previous_state != paused) {
@@ -209,12 +214,13 @@ void shift_reg::stateMachine() {
 				shift_reg::shiftBits(false);	//shift to the left
 			}
 			break;
-
+		**/
 			//'dafault' is the same as 'idle'
 		default:
 			testPattern_a.write(0);
 			testPattern_b.write(0);
 			data_enable.write(0);
+			testNumber.write(0);
 			oneFloat = 0;
 
 			std::cout << "idle/default" << std::endl;
@@ -236,6 +242,7 @@ void shift_reg::stateMachine() {
 		testPattern_a.write(0);
 		testPattern_b.write(0);
 		data_enable.write(0);
+		testNumber.write(0);
 		oneFloat = 0;
 
 		std::cout << "disabled" << std::endl;
