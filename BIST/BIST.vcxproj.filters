@@ -39,6 +39,12 @@
     <ClCompile Include="..\Output_Response_Analyser\compactor_and.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Test_Pattern_Generator\shift_reg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Signal_Flow_Control\mux21_bv_32.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\mult_acc\mult_acc.h">
@@ -63,6 +69,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Output_Response_Analyser\compactor_and.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Test_Pattern_Generator\shift_reg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Signal_Flow_Control\mux21_bv_32.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
