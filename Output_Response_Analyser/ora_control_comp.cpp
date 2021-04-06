@@ -12,7 +12,7 @@ void ora_control_comp::fetchResult() {
 			comp_rest_temp = comp_res_rest.read();
 			comp_sign_temp = comp_res_sign.read();
 			
-			if (testNumber.read() == 0) {
+			if (testNumber.read() == 0b01) {
 				currentTest = 1;
 			}
 			else {
