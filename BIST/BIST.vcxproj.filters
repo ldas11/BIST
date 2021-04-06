@@ -45,6 +45,9 @@
     <ClCompile Include="..\Signal_Flow_Control\mux21_bv_32.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="bist_comp_a_tb.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\mult_acc\mult_acc.h">

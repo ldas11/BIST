@@ -89,7 +89,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;NOGDI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\LDAS\Downloads\systemc-2.3.3\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\LDAS\Downloads\systemc-2.3.3\src;C:\Users\LDAS\source\repos\BIST\BIST_Controller;C:\Users\LDAS\source\repos\BIST\mult_acc;C:\Users\LDAS\source\repos\BIST\Output_Response_Analyser;C:\Users\LDAS\source\repos\BIST\Signal_Flow_Control;C:\Users\LDAS\source\repos\BIST\Test_Pattern_Generator</AdditionalIncludeDirectories>
       <SupportJustMyCode>false</SupportJustMyCode>
       <MinimalRebuild>true</MinimalRebuild>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -160,6 +160,7 @@
     <ClCompile Include="..\Signal_Flow_Control\mux21_bv_32.cpp" />
     <ClCompile Include="..\Test_Pattern_Generator\lfsr_32bit.cpp" />
     <ClCompile Include="..\Test_Pattern_Generator\shift_reg.cpp" />
+    <ClCompile Include="bist_comp_a_tb.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\BIST_Controller\bist_controller.h" />
