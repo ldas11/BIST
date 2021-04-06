@@ -12,6 +12,7 @@ SC_MODULE(ora_control_comp) {
 	
 	bool comp_rest_temp;
 	bool comp_sign_temp;
+	int currentTest;
 
 	void fetchResult();
 

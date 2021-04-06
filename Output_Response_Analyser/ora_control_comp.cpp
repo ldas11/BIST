@@ -11,19 +11,42 @@ void ora_control_comp::fetchResult() {
 			
 			comp_rest_temp = comp_res_rest.read();
 			comp_sign_temp = comp_res_sign.read();
-
-			if (comp_rest_temp == 0 || comp_sign_temp == 0) {
-				oraFinished_out.write(1);
-				oraStatus_out.write(0b01);
-			}
-			else if (comp_rest_temp == 1 && comp_sign_temp ==1) {
-				oraStatus_out.write(0b11);
+			
+			if (testNumber.read() == 0) {
+				currentTest = 1;
 			}
 			else {
-				oraFinished_out.write(1);
-				oraStatus_out.write(0b10);
+				currentTest = 2;
 			}
 
+			switch (currentTest) {
+			case 1:
+				if (comp_sign_temp == 0) {
+					oraFinished_out.write(1);
+					oraStatus_out.write(0b01);
+				}
+				else if (comp_sign_temp == 1) {
+					oraStatus_out.write(0b11);
+				}
+				else {
+					oraFinished_out.write(1);
+					oraStatus_out.write(0b10);
+				}
+				break;
+			case 2:
+				if (comp_rest_temp == 0 || comp_sign_temp == 0) {
+					oraFinished_out.write(1);
+					oraStatus_out.write(0b01);
+				}
+				else if (comp_rest_temp == 1 && comp_sign_temp == 1) {
+					oraStatus_out.write(0b11);
+				}
+				else {
+					oraFinished_out.write(1);
+					oraStatus_out.write(0b10);
+				}
+				break;
+			}
 		}
 	}
 	else if(oraEnable_in.read() == 0) {
