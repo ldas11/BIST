@@ -20,7 +20,7 @@ void mult_acc::process() {
         if (finish_acc_in.read()) {
             acc_reg_out.write(accumulation);
             o_data_out.write(o_data_reg);       //to use as input for the ORAs
-            //accumulation = 0;
+            accumulation = 0;
         }
 
     }
