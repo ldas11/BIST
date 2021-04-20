@@ -4,8 +4,8 @@
 #include"systemc.h"
 
 SC_MODULE(compactor_nand) {
-	sc_in<sc_bv<31>> toCompact;
-	sc_out<bool> compacted;
+	sc_in<sc_bv<31>> toCompact_in;
+	sc_out<bool> compacted_out;
 	
 	sc_bv<31> toCompact_temp;
 	sc_bv<1> compacted_temp;
@@ -14,7 +14,7 @@ SC_MODULE(compactor_nand) {
 
 	SC_CTOR(compactor_nand) {
 		SC_METHOD(compact);
-		sensitive << toCompact;
+		sensitive << toCompact_in;
 	}
 };
 

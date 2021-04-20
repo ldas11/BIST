@@ -2,7 +2,7 @@
 
 void compactor_nand::compact() {
 	
-	toCompact_temp = toCompact.read();
+	toCompact_temp = toCompact_in.read();
 	compacted_temp = 1;
 	
 	for (int i = 0; i < 29; i++) {
@@ -10,11 +10,11 @@ void compactor_nand::compact() {
 	}
 	
 	if (compacted_temp[0] == 1) {
-		compacted.write(1);
+		compacted_out.write(1);
 	}
 	else if(compacted_temp[0] == 0)
 	{
-		compacted.write(0);
+		compacted_out.write(0);
 	}
 	
 }

@@ -10,10 +10,10 @@ void shift_reg::stateMachine() {
 			when run=0 --> stay 'idle'
 			**/
 		case idle:
-			testPattern_a.write(0);
-			testPattern_b.write(0);
-			data_enable.write(0);
-			testNumber.write(0);
+			testPattern_a_out.write(0);
+			testPattern_b_out.write(0);
+			data_en_out.write(0);
+			testNumber_out.write(0);
 			oneFloat = 0;
 
 			std::cout << "idle" << std::endl;
@@ -22,7 +22,7 @@ void shift_reg::stateMachine() {
 			next_state = test1;
 			count = 0;
 
-			if (run_pause.read()) {
+			if (run_pause_in.read()) {
 				current_state = next_state;
 			}
 			else {
@@ -36,15 +36,15 @@ void shift_reg::stateMachine() {
 			when run=0 --> stay 'paused'
 			**/
 		case paused:
-			testPattern_a.write(currentPattern);
+			testPattern_a_out.write(currentPattern);
 			if (previous_state == test1) {
-				testPattern_b.write(test1_Pattern);
+				testPattern_b_out.write(test1_Pattern);
 			}
 			else {
-				testPattern_b.write(oneFloat);
+				testPattern_b_out.write(oneFloat);
 			}
 			
-			data_enable.write(0);
+			data_en_out.write(0);
 
 			if (previous_state != paused) {
 				next_state = previous_state;
@@ -52,7 +52,7 @@ void shift_reg::stateMachine() {
 			}
 			
 			std::cout << "paused " << std::endl;
-			current_state = run_pause.read() ? next_state : paused;
+			current_state = run_pause_in.read() ? next_state : paused;
 			break;
 
 			/**
@@ -84,14 +84,14 @@ void shift_reg::stateMachine() {
 				test1_Pattern[31] = ~test1_Pattern[31];
 			}
 			
-			testPattern_a.write(currentPattern);
-			testPattern_b.write(test1_Pattern);
-			testNumber.write(0b01);
-			data_enable.write(1);
+			testPattern_a_out.write(currentPattern);
+			testPattern_b_out.write(test1_Pattern);
+			testNumber_out.write(0b01);
+			data_en_out.write(1);
 			//increase the pattern count by 1
 			count += 1;
-			std::cout << "test1, test pattern_a: " << testPattern_a << std::endl;
-			std::cout << "test1, test pattern_b: " << testPattern_b << std::endl;
+			std::cout << "test1, test pattern_a: " << testPattern_a_out << std::endl;
+			std::cout << "test1, test pattern_b: " << testPattern_b_out << std::endl;
 			std::cout << "count: " << count << std::endl;
 			decide_next_state(count, 4, current_state, next_state);
 			
@@ -120,13 +120,13 @@ void shift_reg::stateMachine() {
 				next_state = test3;
 			}
 			
-			testPattern_a.write(currentPattern);
-			testPattern_b.write(oneFloat);
-			testNumber.write(0b10);
-			data_enable.write(1);
+			testPattern_a_out.write(currentPattern);
+			testPattern_b_out.write(oneFloat);
+			testNumber_out.write(0b10);
+			data_en_out.write(1);
 			//increase the pattern count by 1
 			count += 1;
-			std::cout << "test2, test pattern: " << testPattern_a << std::endl;
+			std::cout << "test2, test pattern: " << testPattern_a_out << std::endl;
 			std::cout << "count: " << count << std::endl;
 			decide_next_state(count, 8, current_state, next_state);
 
@@ -161,13 +161,13 @@ void shift_reg::stateMachine() {
 			}
 			
 
-			testPattern_a.write(currentPattern);
-			testPattern_b.write(oneFloat);
-			testNumber.write(0b11);
-			data_enable.write(1);
+			testPattern_a_out.write(currentPattern);
+			testPattern_b_out.write(oneFloat);
+			testNumber_out.write(0b11);
+			data_en_out.write(1);
 			//increase the pattern count by 1
 			count += 1;
-			std::cout << "test3, test pattern: " << testPattern_a << std::endl;
+			std::cout << "test3, test pattern: " << testPattern_a_out << std::endl;
 			std::cout << "count: " << count << std::endl;
 			decide_next_state(count, 23, current_state, next_state);
 
@@ -201,9 +201,9 @@ void shift_reg::stateMachine() {
 				next_state = idle;
 			}
 			
-			testPattern_a.write(currentPattern);
-			testPattern_b.write(oneFloat);
-			data_enable.write(1);
+			testPattern_a_out.write(currentPattern);
+			testPattern_b_out.write(oneFloat);
+			data_en_out.write(1);
 			//increase the pattern count by 1
 			count += 1;
 			std::cout << "test4, test pattern: " << testPattern_a << std::endl;
@@ -217,10 +217,10 @@ void shift_reg::stateMachine() {
 		**/
 			//'dafault' is the same as 'idle'
 		default:
-			testPattern_a.write(0);
-			testPattern_b.write(0);
-			data_enable.write(0);
-			testNumber.write(0);
+			testPattern_a_out.write(0);
+			testPattern_b_out.write(0);
+			data_en_out.write(0);
+			testNumber_out.write(0);
 			oneFloat = 0;
 
 			std::cout << "idle/default" << std::endl;
@@ -228,7 +228,7 @@ void shift_reg::stateMachine() {
 			current_state = idle;
 			next_state = test1;
 
-			if (run_pause.read()) {
+			if (run_pause_in.read()) {
 				current_state = lfsrEnable_in.read() ? next_state : idle;
 				count = 0;
 			}
@@ -239,10 +239,10 @@ void shift_reg::stateMachine() {
 		}
 	}
 	else {
-		testPattern_a.write(0);
-		testPattern_b.write(0);
-		data_enable.write(0);
-		testNumber.write(0);
+		testPattern_a_out.write(0);
+		testPattern_b_out.write(0);
+		data_en_out.write(0);
+		testNumber_out.write(0);
 		oneFloat = 0;
 
 		std::cout << "disabled" << std::endl;
@@ -278,12 +278,12 @@ void shift_reg::shiftBits(bool left_right) {
 
 void shift_reg::decide_next_state(int current_count, int max_count, state_names current, state_names next) {
 	if (current_count >= max_count) {
-		current_state = run_pause.read() ? next : paused;
+		current_state = run_pause_in.read() ? next : paused;
 		previous_state = current;
 	}
 	else {
 		//shift_reg::shiftBits(direction);
-		current_state = run_pause.read() ? current : paused;
+		current_state = run_pause_in.read() ? current : paused;
 		previous_state = current;
 	}
 }

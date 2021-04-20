@@ -6,11 +6,11 @@
 SC_MODULE(shift_reg) {
 	static const int patternWidth = 32;			//for the pattern width in bits
 	// ports
-	sc_in<bool> clk, lfsrEnable_in, run_pause;	//clock input, enable input, run/pause input
-	sc_out<sc_bv<patternWidth>> testPattern_a;	//pattern output
-	sc_out<sc_bv<patternWidth>> testPattern_b;	//pattern output
-	sc_out<bool> data_enable;
-	sc_out<sc_bv<2>> testNumber;
+	sc_in<bool> clk, lfsrEnable_in, run_pause_in;	//clock input, enable input, run/pause input
+	sc_out<sc_bv<patternWidth>> testPattern_a_out;	//pattern output
+	sc_out<sc_bv<patternWidth>> testPattern_b_out;	//pattern output
+	sc_out<bool> data_en_out;
+	sc_out<sc_bv<2>> testNumber_out;
 	
 	sc_bv<patternWidth> currentPattern;
 	sc_bv<patternWidth> newPattern;

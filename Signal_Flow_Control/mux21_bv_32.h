@@ -6,8 +6,8 @@
 SC_MODULE(mux21_bv_32) {
 	//ports
 	sc_in<bool> sfcEnable_in, clk;		// output depends on the value of sfcEnable_in
-	sc_in<sc_bv<32>> normalInput, bistInput;	// normal mode, bist mode
-	sc_out<sc_bv<32>> muxOutput;				// either normalInput or bistInput
+	sc_in<sc_bv<32>> normal_bv_in, bist_bv_in;	// normal mode, bist mode
+	sc_out<sc_bv<32>> mux_bv_out;				// either normalInput or bistInput
 
 	void chooseOutput();
 

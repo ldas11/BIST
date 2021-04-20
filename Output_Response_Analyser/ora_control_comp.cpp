@@ -3,7 +3,7 @@
 void ora_control_comp::fetchResult() {
 	if (oraEnable_in.read() == 1) {
 		
-		if (testEnded.read() == 1) {
+		if (testEnded_in.read() == 1) {
 			oraFinished_out.write(1);
 		}
 		
@@ -12,7 +12,7 @@ void ora_control_comp::fetchResult() {
 			comp_rest_temp = comp_res_rest.read();
 			comp_sign_temp = comp_res_sign.read();
 			
-			if (testNumber.read() == 0b01) {
+			if (testNumber_in.read() == 0b01) {
 				currentTest = 1;
 			}
 			else {

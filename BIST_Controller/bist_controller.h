@@ -6,14 +6,15 @@
 
 SC_MODULE(bist_controller) {
 	//ports
-	sc_in<bool> enable, clk;
-	sc_in<bool> oraFinished;
+	sc_in<bool> enable_in, clk;
+	sc_in<bool> oraFinished_in;
 	sc_in<sc_bv<2>> oraStatus_in;
 	sc_out<bool> lfsrEnable_out, sfcEnable_out, oraEnable_out; //enable LFSR(pattern generator), enable signal flow control, enable output response analyser
 	sc_out<sc_bv<2>> testReport_out; //type and bitwidth subject to change
 	sc_in<bool> data_en_in;
 	sc_out<bool> a_valid_out, b_valid_out, finish_acc_out;
 	sc_out<bool> run_pause_out;
+	sc_out<bool> testEnded_out;
 	
 	int count;
 

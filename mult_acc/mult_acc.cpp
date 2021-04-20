@@ -3,11 +3,11 @@
 
 void mult_acc::process() {
 	if (reset.read() == 0) {
-        if (a_valid.read())
-            a_fifo.nb_write(a_data.read());
+        if (a_valid_in.read())
+            a_fifo.nb_write(a_data_in.read());
 
-        if (b_valid.read())
-            b_fifo.nb_write(b_data.read());
+        if (b_valid_in.read())
+            b_fifo.nb_write(b_data_in.read());
 
         if (a_fifo.num_available() && b_fifo.num_available()) {
             a_fifo.nb_read(a_data_local);
@@ -17,9 +17,9 @@ void mult_acc::process() {
             std::cout << a_data_local << "*" << b_data_local << " = " << a_data_local * b_data_local << " will be added" << std::endl;
         }
 
-        if (finish_acc.read()) {
-            acc_reg.write(accumulation);
-            o_data.write(o_data_reg);       //to use as input for the ORAs
+        if (finish_acc_in.read()) {
+            acc_reg_out.write(accumulation);
+            o_data_out.write(o_data_reg);       //to use as input for the ORAs
             //accumulation = 0;
         }
 
@@ -29,8 +29,8 @@ void mult_acc::process() {
         o_data_reg = 0;
         a_data_local = 0;
         b_data_local = 0;
-        acc_reg.write(accumulation);
-        o_data.write(o_data_reg);
+        acc_reg_out.write(accumulation);
+        o_data_out.write(o_data_reg);
     }
 }
 
