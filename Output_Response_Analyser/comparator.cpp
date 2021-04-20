@@ -20,6 +20,11 @@ void comparator::compare() {
 
 		//comp_res = ~(mac_data_local ^ ref_data_local);
 		result_rest_out.write(comp_res_rest);
-		result_sign_out.write(comp_res_sign);
+		if (comp_res_sign[0] == 0) {
+			result_sign_out.write(0);
+		}
+		else if (comp_res_sign[0] == 1) {
+			result_sign_out.write(1);
+		}
 	}
 }
