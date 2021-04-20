@@ -4,17 +4,20 @@
 #include"systemc.h"
 
 SC_MODULE(shift_reg) {
-	static const int patternWidth = 32;			//for the pattern width in bits
+	//static const int patternWidth = 32;			//for the pattern width in bits
 	// ports
 	sc_in<bool> clk, lfsrEnable_in, run_pause_in;	//clock input, enable input, run/pause input
-	sc_out<sc_bv<patternWidth>> testPattern_a_out;	//pattern output
-	sc_out<sc_bv<patternWidth>> testPattern_b_out;	//pattern output
+	sc_out<sc_bv<32>> testPattern_a_out;	//pattern output
+	sc_out<sc_bv<32>> testPattern_b_out;	//pattern output
 	sc_out<bool> data_en_out;
+	sc_out<sc_bv<1>> testPattern_b_31_out;
 	sc_out<sc_bv<2>> testNumber_out;
+	sc_out<bool> a_valid_out, b_valid_out, finish_acc_out;
 	
-	sc_bv<patternWidth> currentPattern;
-	sc_bv<patternWidth> newPattern;
-	sc_bv<patternWidth> test1_Pattern;
+	sc_bv<32> currentPattern;
+	sc_bv<32> newPattern;
+	sc_bv<32> test1_Pattern;
+	sc_bv<1> testPattern_b_31;
 	
 	enum state_names { idle, paused, test1, test2, test3, test4};
 	sc_signal<state_names> current_state;

@@ -12,7 +12,11 @@ void shift_reg::stateMachine() {
 		case idle:
 			testPattern_a_out.write(0);
 			testPattern_b_out.write(0);
+			testPattern_b_31_out.write(0);
 			data_en_out.write(0);
+			a_valid_out.write(0);
+			b_valid_out.write(0);
+			finish_acc_out.write(0);
 			testNumber_out.write(0);
 			oneFloat = 0;
 
@@ -39,12 +43,19 @@ void shift_reg::stateMachine() {
 			testPattern_a_out.write(currentPattern);
 			if (previous_state == test1) {
 				testPattern_b_out.write(test1_Pattern);
+				testPattern_b_31[0] = oneFloat[31];
+				
 			}
 			else {
 				testPattern_b_out.write(oneFloat);
+				testPattern_b_31[0] = oneFloat[31];
 			}
-			
+
+			testPattern_b_31_out.write(testPattern_b_31);
 			data_en_out.write(0);
+			a_valid_out.write(0);
+			b_valid_out.write(0);
+			finish_acc_out.write(0);
 
 			if (previous_state != paused) {
 				next_state = previous_state;
@@ -86,8 +97,15 @@ void shift_reg::stateMachine() {
 			
 			testPattern_a_out.write(currentPattern);
 			testPattern_b_out.write(test1_Pattern);
+
+			testPattern_b_31[0] = test1_Pattern[31];
+			testPattern_b_31_out.write(testPattern_b_31);
+
 			testNumber_out.write(0b01);
 			data_en_out.write(1);
+			a_valid_out.write(1);
+			b_valid_out.write(1);
+			finish_acc_out.write(1);
 			//increase the pattern count by 1
 			count += 1;
 			std::cout << "test1, test pattern_a: " << testPattern_a_out << std::endl;
@@ -119,11 +137,18 @@ void shift_reg::stateMachine() {
 				current_state = test2;
 				next_state = test3;
 			}
-			
+
 			testPattern_a_out.write(currentPattern);
 			testPattern_b_out.write(oneFloat);
+
+			testPattern_b_31[0] = oneFloat[31];
+			testPattern_b_31_out.write(testPattern_b_31);
+
 			testNumber_out.write(0b10);
 			data_en_out.write(1);
+			a_valid_out.write(1);
+			b_valid_out.write(1);
+			finish_acc_out.write(1);
 			//increase the pattern count by 1
 			count += 1;
 			std::cout << "test2, test pattern: " << testPattern_a_out << std::endl;
@@ -160,11 +185,17 @@ void shift_reg::stateMachine() {
 				next_state = idle;
 			}
 			
-
 			testPattern_a_out.write(currentPattern);
 			testPattern_b_out.write(oneFloat);
+
+			testPattern_b_31[0] = oneFloat[31];
+			testPattern_b_31_out.write(testPattern_b_31);
+
 			testNumber_out.write(0b11);
 			data_en_out.write(1);
+			a_valid_out.write(1);
+			b_valid_out.write(1);
+			finish_acc_out.write(1);
 			//increase the pattern count by 1
 			count += 1;
 			std::cout << "test3, test pattern: " << testPattern_a_out << std::endl;
@@ -203,7 +234,15 @@ void shift_reg::stateMachine() {
 			
 			testPattern_a_out.write(currentPattern);
 			testPattern_b_out.write(oneFloat);
+
+			testPattern_b_31[0] = oneFloat[31];
+			testPattern_b_31_out.write(testPattern_b_31);
+
 			data_en_out.write(1);
+			data_en_out.write(1);
+			a_valid_out.write(1);
+			b_valid_out.write(1);
+			finish_acc_out.write(1);
 			//increase the pattern count by 1
 			count += 1;
 			std::cout << "test4, test pattern: " << testPattern_a << std::endl;
@@ -219,7 +258,11 @@ void shift_reg::stateMachine() {
 		default:
 			testPattern_a_out.write(0);
 			testPattern_b_out.write(0);
+			testPattern_b_31_out.write(0);
 			data_en_out.write(0);
+			a_valid_out.write(0);
+			b_valid_out.write(0);
+			finish_acc_out.write(0);
 			testNumber_out.write(0);
 			oneFloat = 0;
 
@@ -241,7 +284,11 @@ void shift_reg::stateMachine() {
 	else {
 		testPattern_a_out.write(0);
 		testPattern_b_out.write(0);
+		testPattern_b_31_out.write(0);
 		data_en_out.write(0);
+		a_valid_out.write(0);
+		b_valid_out.write(0);
+		finish_acc_out.write(0);
 		testNumber_out.write(0);
 		oneFloat = 0;
 

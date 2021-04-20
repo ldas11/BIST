@@ -31,40 +31,39 @@ void bist_controller::enableBist() {
 	}
 }
 
-void bist_controller::controlBist() {
+void bist_controller::controlBist() {		
 	if (enable_in.read() == 0) {
-		
-		a_valid_out.write(0);
-		b_valid_out.write(0);
-		run_pause_out.write(0);
-		finish_acc_out.write(0);
-		testEnded_out.write(0);
-		count = 0;
+
+			//a_valid_out.write(0);
+			//b_valid_out.write(0);
+			run_pause_out.write(0);
+			//finish_acc_out.write(0);
+			testEnded_out.write(0);
+			count = 0;
 	}
 	else if (enable_in.read() == 1 && oraFinished_in.read() == 0) {
-		
+
 		run_pause_out.write(1);
-		
+
 		if (data_en_in.read() == 1) {
-			a_valid_out.write(1);
-			b_valid_out.write(1);
-			finish_acc_out.write(1);
+			//a_valid_out.write(1);
+			//b_valid_out.write(1);
+			//finish_acc_out.write(1);
 			count += 1;
-		}
+		}/**
 		else {
 			a_valid_out.write(0);
 			b_valid_out.write(0);
 			finish_acc_out.write(0);
-		}
+		}**/
 	}
 
 	if (count >= 58 || oraFinished_in.read() == 1) {
 		run_pause_out.write(0);
-		finish_acc_out.write(0);
+		//finish_acc_out.write(0);
 		testEnded_out.write(1);
 		count = 0;
 	}
-	
 }
 
 void bist_controller::reportBist() {
