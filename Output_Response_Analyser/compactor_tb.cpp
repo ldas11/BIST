@@ -10,8 +10,8 @@ int sc_main(int argc, char* argv[]) {
 
 	compactor_nand compactor("compactor");
 
-	compactor.toCompact(toCompact);
-	compactor.compacted(compacted);
+	compactor.toCompact_in(toCompact);
+	compactor.compacted_out(compacted);
 
 	//create vcd file to visualize the simulation
 	sc_trace_file* wf = sc_create_vcd_trace_file("compactor");
@@ -42,7 +42,8 @@ int sc_main(int argc, char* argv[]) {
 		toCompact = value;
 		sc_start(1, SC_NS);
 	}
-
+	toCompact = 0b0111111111111111111111111111111;
+	sc_start(1, SC_NS);
 	sc_stop();
 
 	std::cout << "exiting simulation" << std::endl;
