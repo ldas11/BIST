@@ -27,7 +27,7 @@
     <ClCompile Include="compactor_and.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ora_ctrl_tb.cpp">
+    <ClCompile Include="compactor_tb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
