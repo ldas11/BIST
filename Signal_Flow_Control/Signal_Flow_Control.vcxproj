@@ -156,7 +156,7 @@
   <ItemGroup>
     <ClCompile Include="mux21_b.cpp" />
     <ClCompile Include="mux21_bv_32.cpp" />
-    <ClCompile Include="mux21_b_tb.cpp" />
+    <ClCompile Include="mux21_bv_32_tb.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

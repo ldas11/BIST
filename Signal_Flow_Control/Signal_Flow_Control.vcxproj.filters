@@ -23,13 +23,13 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="mux21_b_tb.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="mux21_b.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="mux21_bv_32.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mux21_bv_32_tb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
