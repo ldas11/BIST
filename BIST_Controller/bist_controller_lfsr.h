@@ -1,5 +1,5 @@
-#ifndef BIST_CONTROLLER_COMP_H
-#define BIST_CONTROLLER_COMP_H
+#ifndef BIST_CONTROLLER_LFSR_H
+#define BIST_CONTROLLER_LFSR_H
 
 #include"systemc.h"
 
@@ -29,4 +29,4 @@ SC_MODULE(bist_controller_lfsr) {
 	}
 };
 
-#endif // !BIST_CONTROLLER_COMP_H
+#endif // !BIST_CONTROLLER_LFSR_H
