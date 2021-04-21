@@ -151,9 +151,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="compactor_and.cpp" />
-    <ClCompile Include="compactor_tb.cpp" />
     <ClCompile Include="comparator.cpp" />
     <ClCompile Include="misr.cpp" />
+    <ClCompile Include="misr_tb.cpp" />
     <ClCompile Include="ora_control_comp.cpp" />
   </ItemGroup>
   <ItemGroup>
