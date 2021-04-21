@@ -1,14 +1,8 @@
 #include "ora_control_comp.h"
 
 void ora_control_comp::fetchResult() {
-	if (oraEnable_in.read() == 1) {
-		
-		
-
-		if (testEnded_in.read() == 1) {
-			oraFinished_out.write(1);
-		}
-		
+	if (oraEnable_in.read() == 1 && testEnded_in.read() == 0) {
+				
 		if (compEnable_in.read() == 1) {
 			
 			testNumber.nb_write(testNumber_in.read());
@@ -58,11 +52,22 @@ void ora_control_comp::fetchResult() {
 					}
 					break;
 				}
+				count += 1;
+				if (count >= 33) {
+					oraFinished_out.write(1);
+				}
 			}
 		}
+	}
+	else if (testEnded_in.read() == 1 && oraEnable_in.read() == 1) {
+		oraFinished_out.write(1);
 	}
 	else if(oraEnable_in.read() == 0) {
 		oraFinished_out.write(0);
 		oraStatus_out.write(0b00);
+		count = 0;
+		while (res_rest.nb_read(comp_rest_temp)) {};
+		while (res_sign.nb_read(comp_sign_temp)) {};
+		while (testNumber.nb_read(currentTest_temp)) {};
 	}
 }

@@ -40,4 +40,12 @@ void comparator::compare() {
 			comp_ready_out.write(0);
 		}
 	}
+	else {
+		comp_ready_out.write(0);
+		result_sign_out.write(0);
+		result_rest_out.write(0);
+		while (mac_data.nb_read(mac_data_local)) {};
+		while (ref_data.nb_read(ref_data_local)) {};
+		while (ref_data_b.nb_read(ref_data_b_local)) {};
+	}
 }

@@ -4,6 +4,7 @@
 #include"comparator.h"
 #include"lfsr_32bit.h"
 #include"mult_acc.h"
+#include"mult_acc_faulty.h"
 #include"mux21_b.h"
 #include"mux21_bv_32.h"
 #include"ora_control_comp.h"
@@ -59,12 +60,16 @@ int sc_main(int argc, char* argv[]) {
 	//compactor related signals
 	sc_signal<bool> compacted;
 	//ora control related signals have all been defined already
+	
+	//faulty
+	sc_signal<int> faultybit;
 
 
 	bist_controller main_control("CTRL");
 	compactor_nand compactor("CMPCTR");
 	comparator comparator("CMPRTR");
 	mult_acc mac("MAC");
+	//mult_acc_f mac("MAC_F");
 	mux21_b mux_a_valid("MUX_A_VALID");
 	mux21_b mux_b_valid("MUX_B_VALID");
 	mux21_b mux_finish_acc("MUX_FINISH_ACC");
@@ -137,6 +142,7 @@ int sc_main(int argc, char* argv[]) {
 	mac.acc_reg_out(acc_reg);
 	mac.o_data_out(o_data);
 	mac.mac_data_ready_out(mac_data_ready);
+	//mac.faultPosition_in(faultybit);
 	//connections comparator
 	comparator.clk(clk);
 	comparator.enable(finish_acc_bist);
@@ -210,11 +216,26 @@ int sc_main(int argc, char* argv[]) {
 	pattern_a_sys = 0;
 	pattern_b_sys = 0;
 	reset = 1;
+	faultybit = 0;
 
 	sc_start(1, SC_NS);
+	/*
+	for(int i = 0; i<32; i++){
+		enable = 1;
+		reset = 0;
+		faultybit = i;
+		sc_start(40, SC_NS);
+		enable = 0;
+		reset = 1;
+		sc_start(5, SC_NS);
+	}
+	*/
 	enable = 1;
 	reset = 0;
-	sc_start(100, SC_NS);
+	sc_start(39, SC_NS);
+	enable = 0;
+	reset = 1;
+	sc_start(5, SC_NS);
 
 	sc_stop();
 	std::cout << "exiting simulation" << std::endl;

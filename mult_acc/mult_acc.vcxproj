@@ -152,9 +152,11 @@
   <ItemGroup>
     <ClCompile Include="mult_acc.cpp" />
     <ClCompile Include="mult_acc_testbench.cpp" />
+    <ClCompile Include="mult_alt_faulty.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mult_acc.h" />
+    <ClInclude Include="mult_acc_faulty.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

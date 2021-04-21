@@ -48,6 +48,9 @@
     <ClCompile Include="bist_comp_a_tb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\mult_acc\mult_acc_faulty.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\mult_acc\mult_acc.h">
@@ -78,6 +81,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Signal_Flow_Control\mux21_bv_32.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mult_acc\mult_acc_faulty.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

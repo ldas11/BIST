@@ -21,9 +21,15 @@
     <ClCompile Include="mult_acc_testbench.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="mult_alt_faulty.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mult_acc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mult_acc_faulty.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

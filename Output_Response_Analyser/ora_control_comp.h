@@ -18,6 +18,7 @@ SC_MODULE(ora_control_comp) {
 	bool comp_sign_temp;
 	sc_bv<2> currentTest_temp;
 	int currentTest;
+	int count;
 
 	void fetchResult();
 
