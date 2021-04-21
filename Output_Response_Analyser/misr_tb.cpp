@@ -42,6 +42,7 @@ int sc_main(int argc, char* argv[]) {
 	sc_start(0, SC_NS);
 	sc_start(1, SC_NS);
 	oraEnable_in = 1;
+	sc_start(1, SC_NS);
 	mac_data_ready_in = 1;
 	sc_start(1, SC_NS);
 	mac_data_ready_in = 0;

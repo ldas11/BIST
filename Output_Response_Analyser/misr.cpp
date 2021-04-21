@@ -19,17 +19,20 @@ void misr::stateMachine() {
 		misr_current_value = 0;
 		output1.write(0);
 		oraFinished_out.write(0);
+		oraStatus_out.write(0b00);
 		state = oraEnable_in.read() ? init : idle;
 		break;
 	case init:
 		o_data = o_data_in.read();
 		misr_current_value = 0;
 		o_data_index = 31;
+		oraStatus_out.write(0b10);
 		state = oraEnable_in.read() ? run : idle;
 		break;
 	case run:
 		misr::shiftBits();
 		o_data_index -= 1;
+		oraStatus_out.write(0b00);
 		state = oraEnable_in.read() ? run : idle;
 		if (o_data_index == -1) {
 			state = check_result;
@@ -37,12 +40,17 @@ void misr::stateMachine() {
 		break;
 	case check_result:
 		oraFinished_out.write(1);
-		if (misr_current_value == 0b0000010000011010101000010101010101010100000000000000000000000000) {
-			
+		if (misr_current_value == 0b11000100001110100100000000000001) {
+			oraStatus_out.write(0b11);
 		}
+		else {
+			oraStatus_out.write(0b01);
+		}
+		state = idle;
 		break;
 	default:
-		oraFinished_out.write(1);
+		oraFinished_out.write(0);
+		oraStatus_out.write(0b00);
 		state = oraEnable_in.read() ? init : idle;
 		break;
 	}
