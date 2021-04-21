@@ -1,7 +1,7 @@
 #include "bist_controller_comp.h"
 #include<iostream>
 
-void bist_controller::enableBist() {
+void bist_controller_comp::enableBist() {
 	//if the enable input is active, then the other components will be enabled too
 	if (enable_in.read() == 1) {
 		std::cout << "enabling pattern generator" << std::endl;
@@ -32,7 +32,7 @@ void bist_controller::enableBist() {
 	}
 }
 
-void bist_controller::controlBist() {		
+void bist_controller_comp::controlBist() {		
 	if (enable_in.read() == 0) {
 
 			//a_valid_out.write(0);
@@ -71,7 +71,7 @@ void bist_controller::controlBist() {
 	}
 }
 
-void bist_controller::reportBist() {
+void bist_controller_comp::reportBist() {
 	if (enable_in.read() == 0) {
 		testReport_out.write(0);
 	}
