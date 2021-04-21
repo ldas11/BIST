@@ -13,7 +13,7 @@ SC_MODULE(mux21_b) {
 
 	SC_CTOR(mux21_b) {
 		SC_METHOD(chooseOutput);		//method chooseOutput selects the value from either normalImput or bistInput and writes it on muxOutput
-		sensitive << bist_b_in;
+		sensitive << bist_b_in << normal_b_in;
 	}
 };
 
