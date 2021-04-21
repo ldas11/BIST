@@ -20,14 +20,14 @@ void mult_acc_f::process() {
             //o_data_reg[faultPosition] = 0b0u; //clear a bit
             o_data_reg[faultPosition] = 0b1u; //set a bit
             
-            mac_data_ready_out.write(1);
+            
             std::cout << a_data_local << "*" << b_data_local << " = " << a_data_local * b_data_local << " will be added" << std::endl;
         }
 
         if (finish_acc_in.read()) {
             acc_reg_out.write(accumulation);
             o_data_out.write(o_data_reg);       //to use as input for the ORAs
-
+            mac_data_ready_out.write(1);
             accumulation = 0;
         }
 
