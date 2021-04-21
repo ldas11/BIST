@@ -2,9 +2,11 @@
 
 void comparator::compare() {
 	if (enable.read() == 1) {
+		
 		if (mac_data_ready_in.read() == 1) {
 			mac_data.nb_write(mac_data_in.read());
 		}
+
 		ref_data.nb_write(ref_data_in.read());
 		ref_data_b.nb_write(ref_data_b_in.read());
 
@@ -25,6 +27,7 @@ void comparator::compare() {
 
 			//comp_res = ~(mac_data_local ^ ref_data_local);
 			result_rest_out.write(comp_res_rest);
+			
 			if (comp_res_sign[0] == 0b0) {
 				result_sign_out.write(0);
 			}
