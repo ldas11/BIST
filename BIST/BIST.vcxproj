@@ -151,6 +151,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\BIST_Controller\bist_controller_defs.cpp" />
+    <ClCompile Include="..\BIST_Controller\bist_controller_lfsr.cpp" />
     <ClCompile Include="..\mult_acc\mult_acc.cpp" />
     <ClCompile Include="..\mult_acc\mult_acc_faulty.cpp" />
     <ClCompile Include="..\Output_Response_Analyser\compactor_and.cpp" />
@@ -161,10 +162,11 @@
     <ClCompile Include="..\Signal_Flow_Control\mux21_bv_32.cpp" />
     <ClCompile Include="..\Test_Pattern_Generator\lfsr_32bit.cpp" />
     <ClCompile Include="..\Test_Pattern_Generator\shift_reg.cpp" />
-    <ClCompile Include="bist_comp_a_tb.cpp" />
+    <ClCompile Include="bist_lfsr_tb_a.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\BIST_Controller\bist_controller.h" />
+    <ClInclude Include="..\BIST_Controller\bist_controller_comp.h" />
+    <ClInclude Include="..\BIST_Controller\bist_controller_lfsr.h" />
     <ClInclude Include="..\mult_acc\mult_acc.h" />
     <ClInclude Include="..\mult_acc\mult_acc_faulty.h" />
     <ClInclude Include="..\Output_Response_Analyser\compactor_and.h" />

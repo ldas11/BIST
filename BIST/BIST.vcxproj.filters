@@ -18,9 +18,6 @@
     <ClCompile Include="..\mult_acc\mult_acc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\BIST_Controller\bist_controller_defs.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\Signal_Flow_Control\mux21_b.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -45,18 +42,21 @@
     <ClCompile Include="..\Signal_Flow_Control\mux21_bv_32.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="bist_comp_a_tb.cpp">
+    <ClCompile Include="..\mult_acc\mult_acc_faulty.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\mult_acc\mult_acc_faulty.cpp">
+    <ClCompile Include="bist_lfsr_tb_a.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\BIST_Controller\bist_controller_defs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\BIST_Controller\bist_controller_lfsr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\mult_acc\mult_acc.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\BIST_Controller\bist_controller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Signal_Flow_Control\mux21_b.h">
@@ -84,6 +84,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\mult_acc\mult_acc_faulty.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BIST_Controller\bist_controller_lfsr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BIST_Controller\bist_controller_comp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
