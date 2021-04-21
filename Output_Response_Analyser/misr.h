@@ -25,7 +25,6 @@ SC_MODULE(misr) {
 	sc_bv<64> misr_new_value;
 
 	//functions
-	void serialize();
 	void shiftBits();
 	void stateMachine();
 

@@ -1,29 +1,21 @@
 #include"misr.h"
-void misr::serialize() {
-	if (oraEnable_in.read() == 1 && mac_data_ready_in.read() == 1) {
-		o_data = o_data_in.read();
-		beginShifting = true;
-		for (int i = 31; i >= 0; i--) {
-			
-		}		
-	}
-	else {
-		beginShifting = false;
-		initializeCount = false;
-	}
-}
 
 void misr::stateMachine() {
 	switch (state) {
 	case idle:
 		misr_current_value = 0;
+		beginShifting = false;
 		output1.write(0);
 		oraFinished_out.write(0);
 		oraStatus_out.write(0b00);
 		state = oraEnable_in.read() ? init : idle;
+		if (mac_data_ready_in.read() == 0) {
+			state = idle;
+		}
 		break;
 	case init:
 		o_data = o_data_in.read();
+		beginShifting = true;
 		misr_current_value = 0;
 		o_data_index = 31;
 		oraStatus_out.write(0b10);
@@ -50,6 +42,7 @@ void misr::stateMachine() {
 		break;
 	default:
 		oraFinished_out.write(0);
+		beginShifting = false;
 		oraStatus_out.write(0b00);
 		state = oraEnable_in.read() ? init : idle;
 		break;

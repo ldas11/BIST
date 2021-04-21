@@ -47,7 +47,18 @@ int sc_main(int argc, char* argv[]) {
 	sc_start(1, SC_NS);
 	mac_data_ready_in = 0;
 	sc_start(37, SC_NS);
-	
+	sc_start(5, SC_NS);
+	mac_data_ready_in = 1;
+	sc_start(1, SC_NS);
+	mac_data_ready_in = 0;
+	sc_start(37, SC_NS);
+	o_data_in = 0b11000100001110100100000011100001;
+	sc_start(5, SC_NS);
+	mac_data_ready_in = 1;
+	sc_start(1, SC_NS);
+	mac_data_ready_in = 0;
+	sc_start(37, SC_NS);
+
 	//exit sim
 	sc_stop();
 
