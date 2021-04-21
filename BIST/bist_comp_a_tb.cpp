@@ -45,6 +45,7 @@ int sc_main(int argc, char* argv[]) {
 	sc_signal<bool> acc_finish;
 	sc_signal<float> acc_reg;
 	sc_signal<sc_bv<32>> o_data;
+	sc_signal<bool> mac_data_ready;
 	//MUX b signals
 	//sc_signal<bool> normal_b, bist_b;
 	//sc_signal<bool> mux_b_out;
@@ -54,6 +55,7 @@ int sc_main(int argc, char* argv[]) {
 	//comparator related signals
 	sc_signal<bool> result_sign;
 	sc_signal<sc_bv<31>> result_rest;
+	sc_signal<bool> comp_ready;
 	//compactor related signals
 	sc_signal<bool> compacted;
 	//ora control related signals have all been defined already
@@ -134,6 +136,7 @@ int sc_main(int argc, char* argv[]) {
 	mac.b_data_in(data_b);
 	mac.acc_reg_out(acc_reg);
 	mac.o_data_out(o_data);
+	mac.mac_data_ready_out(mac_data_ready);
 	//connections comparator
 	comparator.clk(clk);
 	comparator.enable(finish_acc_bist);
@@ -142,6 +145,8 @@ int sc_main(int argc, char* argv[]) {
 	comparator.ref_data_b_in(testPattern_b_31);
 	comparator.result_sign_out(result_sign);
 	comparator.result_rest_out(result_rest);
+	comparator.comp_ready_out(comp_ready);
+	comparator.mac_data_ready_in(mac_data_ready);
 	//connections comparator
 	compactor.toCompact_in(result_rest);
 	compactor.compacted_out(compacted);
@@ -155,6 +160,7 @@ int sc_main(int argc, char* argv[]) {
 	ora_ctrl.testNumber_in(testNumber);
 	ora_ctrl.oraFinished_out(oraFinished);
 	ora_ctrl.oraStatus_out(oraStatus);
+	ora_ctrl.comp_ready_in(comp_ready);
 	
 	//create vcd file to visualize the simulation
 	sc_trace_file* wf = sc_create_vcd_trace_file("bist_comp_a");
@@ -193,6 +199,8 @@ int sc_main(int argc, char* argv[]) {
 	sc_trace(wf, result_sign,"result_sign");
 	sc_trace(wf, result_rest,"result_rest");
 	sc_trace(wf, compacted,"compacted");
+	sc_trace(wf, comp_ready, "comp_ready");
+	sc_trace(wf, mac_data_ready, "mac_data_ready");
 
 	enable = 0;
 	testReport = 0;

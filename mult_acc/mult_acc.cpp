@@ -14,16 +14,19 @@ void mult_acc::process() {
             b_fifo.nb_read(b_data_local);
             accumulation += a_data_local * b_data_local;
             o_data_reg = float_to_bv(accumulation);
+            mac_data_ready_out.write(1);
             std::cout << a_data_local << "*" << b_data_local << " = " << a_data_local * b_data_local << " will be added" << std::endl;
         }
 
         if (finish_acc_in.read()) {
             acc_reg_out.write(accumulation);
             o_data_out.write(o_data_reg);       //to use as input for the ORAs
+           
             accumulation = 0;
         }
 
     }
+    
     else {
         accumulation = 0;
         o_data_reg = 0;
@@ -31,7 +34,9 @@ void mult_acc::process() {
         b_data_local = 0;
         acc_reg_out.write(accumulation);
         o_data_out.write(o_data_reg);
+        mac_data_ready_out.write(0);
     }
+    
 }
 
 //convert floats to uint, can then be stored as bit vector

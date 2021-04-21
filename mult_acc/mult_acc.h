@@ -7,6 +7,7 @@ SC_MODULE(mult_acc) {
 	sc_in<bool> clk, reset, a_valid_in, b_valid_in, finish_acc_in;
 	sc_in<float> a_data_in, b_data_in;
 	sc_out<float> acc_reg_out;
+	sc_out<bool> mac_data_ready_out;
 	sc_out<sc_bv<32>> o_data_out;
 
 	sc_uint<32> o_data_reg;
