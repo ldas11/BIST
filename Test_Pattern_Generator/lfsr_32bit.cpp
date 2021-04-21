@@ -4,22 +4,45 @@
 void lfsr_32bit::stateMachine() {
 	switch (state) {
 		case idle: 
-			testPattern.write(0); 
+			count = 0;
+			testPattern_a_out.write(0);
+			testPattern_b_out.write(0);
+			a_valid_out.write(0);
+			b_valid_out.write(0);
+			finish_acc_out.write(0);
 			std::cout << "idle" << std::endl;
 			state = lfsrEnable_in.read() ? init : idle; 
 			break;
 		case init: 
 			currentPattern = 2147483648; 
-			testPattern.write(currentPattern); 
-			std::cout << "init, test pattern: " << testPattern << std::endl;
+			testPattern_a_out.write(currentPattern); 
+			testPattern_b_out.write(currentPattern);
+			std::cout << "init, test pattern: " << testPattern_a_out << std::endl;
 			state = lfsrEnable_in.read() ? run : idle; 
 			break;
 		case run: 
+			a_valid_out.write(1);
+			b_valid_out.write(1);
 			lfsr_32bit::shiftBits(); 
+			count += 1;
 			state = lfsrEnable_in.read() ? run : idle; 
+			if (count > 150) {
+				state = request_result;
+			}
+			break;
+		case request_result:
+			a_valid_out.write(0);
+			b_valid_out.write(0);
+			finish_acc_out.write(1);
+			state = idle;
 			break;
 		default:
-			testPattern.write(0);
+			count = 0;
+			testPattern_a_out.write(0);
+			testPattern_b_out.write(0);
+			a_valid_out.write(0);
+			b_valid_out.write(0);
+			finish_acc_out.write(0);
 			std::cout << "idle" << std::endl;
 			state = lfsrEnable_in.read() ? init : idle;
 			break;
@@ -41,8 +64,9 @@ void lfsr_32bit::shiftBits() {
 		currentPattern = newPattern;
 		//std::cout << "current pattern: " << currentPattern << std::endl;
 		//write current pattern on the output
-		testPattern.write(currentPattern);
-		std::cout << "run, test pattern: " << testPattern << std::endl;
+		testPattern_a_out.write(currentPattern);
+		testPattern_b_out.write(currentPattern);
+		std::cout << "run, test pattern: " << testPattern_a_out << std::endl;
 	}
 }
 	

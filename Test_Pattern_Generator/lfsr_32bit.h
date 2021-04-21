@@ -7,12 +7,15 @@ SC_MODULE(lfsr_32bit) {
 	static const int patternWidth = 32;			//for the pattern width in bits
 	// ports
 	sc_in<bool> clk, lfsrEnable_in;				//clock input, enable input
-	sc_out<sc_bv<patternWidth>> testPattern;	//pattern output
+	sc_out<sc_bv<patternWidth>> testPattern_a_out, testPattern_b_out;	//pattern output
+	sc_out<bool> a_valid_out, b_valid_out, finish_acc_out;
+
 	sc_bv<patternWidth> currentPattern;
 	sc_bv<patternWidth> newPattern;
 	sc_bit forBruijn;
 
-	enum state_names{idle, init, run};
+	int count;
+	enum state_names{idle, init, run, request_result};
 	sc_signal<state_names> state;
 	void stateMachine();
 
