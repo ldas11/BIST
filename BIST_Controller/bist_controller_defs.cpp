@@ -15,6 +15,7 @@ void bist_controller::enableBist() {
 		std::cout << "enabling ORA" << std::endl;
 		oraEnable_out.write(1);													//enable ORA
 		std::cout << "oraEnable_out is: " << oraEnable_out.read() << std::endl;
+
 	}//otherwise disable the other modules
 	else if (enable_in.read() == 0) {
 		std::cout << "disabling pattern generator" << std::endl;
@@ -39,12 +40,16 @@ void bist_controller::controlBist() {
 			run_pause_out.write(0);
 			//finish_acc_out.write(0);
 			testEnded_out.write(0);
+			isTestRunning = false;
 			count = 0;
 	}
 	else if (enable_in.read() == 1 && oraFinished_in.read() == 0) {
-
-		run_pause_out.write(1);
-
+		if (count < 43) {
+			isTestRunning = true;
+		}
+		if (isTestRunning) {
+			run_pause_out.write(1);
+		}
 		if (data_en_in.read() == 1) {
 			//a_valid_out.write(1);
 			//b_valid_out.write(1);
@@ -58,11 +63,11 @@ void bist_controller::controlBist() {
 		}**/
 	}
 
-	if (count >= 58 || oraFinished_in.read() == 1) {
+	if (count >= 43 || oraFinished_in.read() == 1) {
 		run_pause_out.write(0);
 		//finish_acc_out.write(0);
+		isTestRunning = false;
 		testEnded_out.write(1);
-		count = 0;
 	}
 }
 

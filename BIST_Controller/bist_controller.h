@@ -17,6 +17,7 @@ SC_MODULE(bist_controller) {
 	sc_out<bool> testEnded_out;
 	
 	int count;
+	bool isTestRunning;
 
 	void enableBist();
 	void controlBist();
