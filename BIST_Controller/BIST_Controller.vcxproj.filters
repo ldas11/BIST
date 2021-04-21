@@ -23,7 +23,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="bist_controller.h">
+    <ClInclude Include="bist_controller_comp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -154,7 +154,7 @@
     <ClCompile Include="bist_controller_testbench.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="bist_controller.h" />
+    <ClInclude Include="bist_controller_comp.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

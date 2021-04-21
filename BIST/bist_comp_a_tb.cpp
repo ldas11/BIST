@@ -1,5 +1,5 @@
 #include<iostream>
-#include"bist_controller.h"
+#include"bist_controller_comp.h"
 #include"compactor_and.h"
 #include"comparator.h"
 #include"lfsr_32bit.h"

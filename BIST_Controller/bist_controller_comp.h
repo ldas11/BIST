@@ -1,6 +1,6 @@
 //#pragma once
-#ifndef BIST_CONTROLLER_H
-#define BIST_CONTROLLER_H
+#ifndef BIST_CONTROLLER_COMP_H
+#define BIST_CONTROLLER_COMP_H
 
 #include"systemc.h"
 
@@ -35,4 +35,4 @@ SC_MODULE(bist_controller) {
 	}
 };
 
-#endif // !BIST_CONTROLLER_H
+#endif // !BIST_CONTROLLER_COMP_H

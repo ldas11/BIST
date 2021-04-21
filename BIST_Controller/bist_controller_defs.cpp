@@ -1,4 +1,4 @@
-#include "bist_controller.h"
+#include "bist_controller_comp.h"
 #include<iostream>
 
 void bist_controller::enableBist() {
