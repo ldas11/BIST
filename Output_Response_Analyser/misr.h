@@ -10,7 +10,7 @@ SC_MODULE(misr) {
 	sc_out<bool> oraFinished_out;
 	sc_out<sc_bv<2>> oraStatus_out;
 	
-	sc_out<sc_bv<64>> output1;
+	//sc_out<sc_bv<64>> output1;
 
 	enum state_names { idle, init, run, check_result};
 	sc_signal<state_names> state;

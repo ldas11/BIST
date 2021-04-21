@@ -5,7 +5,7 @@ void misr::stateMachine() {
 	case idle:
 		misr_current_value = 0;
 		beginShifting = false;
-		output1.write(0);
+		//output1.write(0);
 		oraFinished_out.write(0);
 		oraStatus_out.write(0b00);
 		state = oraEnable_in.read() ? init : idle;
@@ -64,5 +64,5 @@ void misr::shiftBits() {
 	}
 	
 	misr_current_value = misr_new_value;
-	output1.write(misr_current_value);
+	//output1.write(misr_current_value);
 }
